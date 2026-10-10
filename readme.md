@@ -34,16 +34,16 @@ Traditional metrics (goals, assists, key passes) heavily bias credit toward the 
 ### Mathematical Formulation
 The pitch is discretized into a grid of zones. In any given zone $(x, y)$, a player can either **shoot** or **move the ball** (via pass or carry):
 
-$$xT(x, y) = \underbrace{P(\text{Shot}) \times P(\text{Goal}\vert{}\text{Shot})}_{\text{Direct Threat}} + \underbrace{P(\text{Move}) \times \sum_{(x', y')} \Big( T_{(x, y) \to (x', y')} \times xT(x', y') \Big)}_{\text{Future Threat}}$$
+$$xT(x, y) = \underbrace{P(\text{Shot}) \times P(\text{Goal} \mid \text{Shot})}_{\text{Direct Threat}} + \underbrace{P(\text{Move}) \times \sum_{(x', y')} \Big( T_{(x, y) \to (x', y')} \times xT(x', y') \Big)}_{\text{Future Threat}}$$
 
 Where:
 * $P(\text{Shot})$ is the probability of taking a shot from zone $(x, y)$.
-* $P(\text{Goal}\vert{}\text{Shot})$ is the probability of a shot resulting in a goal from zone $(x, y)$.
+* $P(\text{Goal} \mid \text{Shot})$ is the probability of a shot resulting in a goal from zone $(x, y)$.
 * $P(\text{Move})$ is the probability of choosing to move the ball rather than shoot.
 * $T_{(x, y) \to (x', y')}$ is the transition probability of moving the ball from $(x, y)$ to $(x', y')$.
 
 Action valuation is computed as the net threat added:
-$$\Delta xT = xT(\text{end\_zone}) - xT(\text{start\_zone})$$
+$$\Delta xT = xT_{\text{end}} - xT_{\text{start}}$$
 
 ---
 
