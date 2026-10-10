@@ -54,7 +54,7 @@ $$\Delta xT = xT_{\text{end}} - xT_{\text{start}}$$
 | **Grid Resolution** | $16 \times 12$ (7.5m $\times$ 6.6m cells) | $12 \times 8$ (10m $\times$ 10m cells) |
 | **Training Sample** | 51 matches (EURO 2024 raw events) | Multi-season league sample (Karun Singh baseline) |
 | **Pass Valuation** | Net $\Delta xT$ (penalizes backward retention) | Net $\Delta xT$ |
-| **Carry Valuation** | Progressive forward carries ($\ge 3.0$m, $\Delta xT \ge 0$) | Progressive forward carries ($\ge 3.0$m, $\Delta xT \ge 0$) |
+| **Carry Valuation** | Progressive forward carries ($\ge 3.0$ m, $\Delta xT \ge 0$) | Progressive forward carries ($\ge 3.0$ m, $\Delta xT \ge 0$) |
 | **Playing Time** | Precise minutes calculated via lineups & substitutions | Standardized match minutes |
 
 ### Analytical Rationale
