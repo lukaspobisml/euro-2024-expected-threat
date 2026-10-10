@@ -57,6 +57,24 @@ $$\Delta xT = xT_{\text{end}} - xT_{\text{start}}$$
 | **Carry Valuation** | Progressive forward carries ($\ge 3.0$ m, $\Delta xT \ge 0$) | Progressive forward carries ($\ge 3.0$ m, $\Delta xT \ge 0$) |
 | **Playing Time** | Precise minutes calculated via lineups & substitutions | Standardized match minutes |
 
+### Why a 16x12 Grid? (Spatial Resolution vs. Data Sparsity)
+
+Choosing the optimal spatial grid requires balancing tactile granularity with sample size constraints:
+
+1. **Doubled Spatial Granularity ($50\text{ m}^2$ vs. $100\text{ m}^2$):**
+   * The benchmark $12 \times 8$ grid divides the pitch into $10\text{m} \times 10\text{m}$ cells ($100\text{ m}^2$). Because $\Delta xT$ is awarded only when an action crosses a cell boundary, short combination passes and 5-to-7-meter progressive carries inside a single 10-meter square receive zero value.
+   * Our $16 \times 12$ grid narrows cells to $7.5\text{m} \times 6.67\text{m}$ ($\approx 50\text{ m}^2$), doubling spatial sensitivity and crediting tight dribbling actions in the final third.
+
+2. **Penalty Box & Half-Space Alignment:**
+   * In StatsBomb coordinates ($120 \times 80$), the penalty box extends to $X = 102$ and spans $Y = 18$ to $Y = 62$. 
+   * A 16-column layout places zone transitions at $X = 97.5$ and $X = 105$, capturing the decisive "edge of the box" zone for cutbacks and second-phase shooting lanes far more organically than coarse 10-meter increments.
+
+3. **Why Not an Even Finer Grid (e.g., $24 \times 16$)?**
+   * While a $24 \times 16$ grid ($5\text{m} \times 5\text{m}$ cells) offers high theoretical resolution, it suffers heavily from **data sparsity** on a 51-match tournament sample:
+     * A $16 \times 12$ grid contains **192 cells**, creating $192^2 = \mathbf{36,864}$ possible transition states.
+     * A $24 \times 16$ grid contains **384 cells**, exploding to $384^2 = \mathbf{147,456}$ possible transitions.
+   * With $\approx 42,000$ successful passes and only **117 goals** scored across EURO 2024, a $24 \times 16$ transition matrix would be predominantly empty ($>75\%$ zero transitions). Moreover, individual goals scored from distance would introduce severe statistical noise and spatial overfitting. The $16 \times 12$ configuration represents the optimal data-to-parameter ratio.
+
 ### Analytical Rationale
 * **The Benchmark Model ($12 \times 8$)** favors deep-lying orchestrators (e.g., Dušan Tadić, Christian Eriksen, Toni Kroos) whose value stems from sustained diagonal switches and final-third entries in structured possession.
 * **The Custom Model ($16 \times 12$)** captures the tournament reality of EURO 2024, where compact defensive low-blocks necessitated 1v1 wing isolation and dynamic carries into the box (e.g., Jérémy Doku, Rafael Leão, Ousmane Dembélé).
